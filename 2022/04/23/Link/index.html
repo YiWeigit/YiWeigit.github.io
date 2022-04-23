@@ -79,16 +79,16 @@
 
 
 
-<meta name="description" content="链接种类 编译时  静态库，整合到可执行文件中  加载时 动态库，在load时loader看到interp节，调用动态连接器  运行时 由代码决定加载那个，可以实现热更新   GCC参数 -o outputfile -O Optimize 优化 -fpic 位置无关 -shared 共享库 -static 静态链接，完全链接 -D ifdef的参数 -I include 路径 -L  静态库路径">
+<meta name="description" content="链接种类 编译时  静态库，整合到可执行文件中  加载时 动态库，在load时loader看到interp节，调用动态连接器  运行时 由代码决定加载那个，可以实现热更新">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Link">
 <meta property="og:url" content="https://yiweigit.github.io/2022/04/23/Link/index.html">
 <meta property="og:site_name" content="Hack-jun">
-<meta property="og:description" content="链接种类 编译时  静态库，整合到可执行文件中  加载时 动态库，在load时loader看到interp节，调用动态连接器  运行时 由代码决定加载那个，可以实现热更新   GCC参数 -o outputfile -O Optimize 优化 -fpic 位置无关 -shared 共享库 -static 静态链接，完全链接 -D ifdef的参数 -I include 路径 -L  静态库路径">
+<meta property="og:description" content="链接种类 编译时  静态库，整合到可执行文件中  加载时 动态库，在load时loader看到interp节，调用动态连接器  运行时 由代码决定加载那个，可以实现热更新">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-04-23T03:06:01.000Z">
-<meta property="article:modified_time" content="2022-04-23T03:11:17.778Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2022-04-23T05:01:43.977Z">
+<meta property="article:author" content="yiwei">
 <meta property="article:tag" content="csapp">
 <meta name="twitter:card" content="summary">
 
@@ -100,7 +100,7 @@
     root: '',
     scheme: 'Muse',
     version: '5.1.4',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":20,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -161,7 +161,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description"></h1>
+        <h1 class="site-subtitle" itemprop="description">Forever Young！</h1>
       
   </div>
 
@@ -184,7 +184,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -192,9 +192,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-fa fa-tags"></i> <br />
             
             标签
           </a>
@@ -204,19 +204,19 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-fa fa-archive"></i> <br />
             
             归档
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404" rel="section">
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-fa fa-calendar"></i> <br />
             
-            公益404
+            日程表
           </a>
         </li>
       
@@ -338,6 +338,8 @@
 <li><p>运行时 由代码决定加载那个，可以实现热更新</p>
 </li>
 </ul>
+<span id="more"></span>
+
 <h1 id="GCC参数"><a href="#GCC参数" class="headerlink" title="GCC参数"></a>GCC参数</h1><ul>
 <li>-o outputfile</li>
 <li>-O Optimize 优化</li>
@@ -484,6 +486,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -512,7 +516,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives">
+                <a href="/archives%7C%7C%20fa%20fa-archive">
               
                   <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
@@ -526,10 +530,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -584,7 +588,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">yiwei</span>
 
   
 </div>
@@ -618,6 +622,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     

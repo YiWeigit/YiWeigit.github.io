@@ -84,7 +84,7 @@
 <meta property="og:url" content="https://yiweigit.github.io/index.html">
 <meta property="og:site_name" content="Hack-jun">
 <meta property="og:locale">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="yiwei">
 <meta name="twitter:card" content="summary">
 
 
@@ -95,7 +95,7 @@
     root: '',
     scheme: 'Muse',
     version: '5.1.4',
-    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":20,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -157,7 +157,7 @@
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description"></h1>
+        <h1 class="site-subtitle" itemprop="description">Forever Young！</h1>
       
   </div>
 
@@ -180,7 +180,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -188,9 +188,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-fa fa-tags"></i> <br />
             
             标签
           </a>
@@ -200,19 +200,19 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-fa fa-archive"></i> <br />
             
             归档
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404" rel="section">
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-fa fa-calendar"></i> <br />
             
-            公益404
+            日程表
           </a>
         </li>
       
@@ -319,8 +319,7 @@
 
       
         
-          
-            <h1 id="链接种类"><a href="#链接种类" class="headerlink" title="链接种类"></a>链接种类</h1><ul>
+          <h1 id="链接种类"><a href="#链接种类" class="headerlink" title="链接种类"></a>链接种类</h1><ul>
 <li><p>编译时  静态库，整合到可执行文件中</p>
 </li>
 <li><p>加载时 动态库，在load时loader看到interp节，调用动态连接器</p>
@@ -328,62 +327,13 @@
 <li><p>运行时 由代码决定加载那个，可以实现热更新</p>
 </li>
 </ul>
-<h1 id="GCC参数"><a href="#GCC参数" class="headerlink" title="GCC参数"></a>GCC参数</h1><ul>
-<li>-o outputfile</li>
-<li>-O Optimize 优化</li>
-<li>-fpic 位置无关</li>
-<li>-shared 共享库</li>
-<li>-static 静态链接，完全链接</li>
-<li>-D ifdef的参数</li>
-<li>-I include 路径</li>
-<li>-L  静态库路径</li>
-<li>-llib 静态库缩写</li>
-</ul>
-<h1 id="链接工作"><a href="#链接工作" class="headerlink" title="链接工作"></a>链接工作</h1><h2 id="符号解析"><a href="#符号解析" class="headerlink" title="符号解析"></a>符号解析</h2><blockquote>
-<p>代码中引用的函数和变量 </p>
-</blockquote>
-<p>编译的原则是每个源代码文件形成一个目标文件，当需要跨文件或者跨文件夹访问或调用时，即有多个文件，那么在编译时，有些符号并没有实际的地址，符号解析的作用就是让每个符号绑定一个地址。</p>
-<p>怎么做？</p>
-<p>编译成功的的目标文件是一个ELF格式，有头部、节段、节头部表组成。</p>
-<p>其中<code>.symtab</code> 是符号表，模块中所有出现的符号都会在里面。</p>
-<p><code>.rel.text</code> 和 <code>.rel.data</code> 是重定位的信息，标记了**.text<strong>和</strong>.data** 节段中链接后需要修改的部分的位置</p>
-<p><code>.symtab</code> 中的标志表示了这个符号是本地还是外部，是否需要解析。</p>
-<p>三种符号</p>
-<ul>
-<li>全局符号，定义在本模块中，所有的模块都能看到，如全局变量，函数</li>
-<li>外部符号，定义在其他模块中，本模块引用，extern 定义的</li>
-<li>局部符号，带有static属性的全局变量和函数</li>
-</ul>
-<p>链接的过程，为未定义的符号找到一个地址，可能多个模块中有相同的符号，取哪一个取决于符号的强弱，是否定义了。连接器会把未解析的符号不断地解析到定义的地方，<strong>在链接静态库时，其中引用的模块必须排在定义的模块前面</strong> </p>
-<h2 id="重定位（relocation）"><a href="#重定位（relocation）" class="headerlink" title="重定位（relocation）"></a><strong>重定位</strong>（relocation）</h2><p>重定位会把所有的模块中相同的section聚合在一起，然后给每个section一个运行时的地址，然后根据重定位section中的记录去修改二进制的内容。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">long</span> offset;     <span class="comment">/* Offset of the reference to relocate */</span></span><br><span class="line">    <span class="type">long</span> type : <span class="number">32</span>,  <span class="comment">/* Relocation type */</span></span><br><span class="line">        symbol : <span class="number">32</span>; <span class="comment">/* Symbol table index */</span></span><br><span class="line">    <span class="type">long</span> addend;     <span class="comment">/* Constant part of relocation expression */</span></span><br><span class="line">&#125; Elf64_Rela</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="位置无关代码"><a href="#位置无关代码" class="headerlink" title="位置无关代码"></a>位置无关代码</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -shared -fpic -o a.so b.o c.o</span><br></pre></td></tr></table></figure>
-
-<p>专门为动态库设计的，可以实现不管放在哪个地址都能正常的引用，动态库在完成链接的时候，代码并没有进入可执行文件中，只是赋值了一些重定位和符号表的信息，包括动态库的路径信息。</p>
-<p>动态库在磁盘上只有一份，代码段内存中也只有一份</p>
-<p>位置无关代码重定位时修改的是section前面的引用表<strong>GOT</strong>和<strong>PLT</strong> 相当于抽象了一层，多了一次访问，但是重定位时不需要修改代码，只要改引用层就行。</p>
-<h1 id="打桩"><a href="#打桩" class="headerlink" title="打桩"></a>打桩</h1><blockquote>
-<p>打桩的目的就是在不改变源代码的情况下，实现功能的转移</p>
-</blockquote>
-<ul>
-<li><p>编译时 通过宏替换标准库的函数，这一步是在预处理时产生的，分离式编译的模块发生了改变</p>
-</li>
-<li><p>链接时 通过gcc的参数，改变符号解析，来达到打桩的目的</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -Wl,--wrap,malloc -Wl,--wrap,free a.o b.o</span><br></pre></td></tr></table></figure>
-
-<p>会把对<code>malloc</code>的引用重定位到<code>__wrap_malloc</code>，把<code>__real_malloc</code>的引用重定位到malloc（这里就是标准库）</p>
-</li>
-<li><p>运行时 通过<code>LD_PRELOAD</code> 环境变量改变了<strong>动态库</strong>的寻找路径</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bash 中</span></span><br><span class="line">LD_PRELOAD=&quot;./a.so&quot; ./b.out</span><br></pre></td></tr></table></figure>
-
-<p>能对malloc函数进行打桩是因为C语言的标准库<strong>libc.so</strong>都是动态库</p>
-</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2022/04/23/Link/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -574,6 +524,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -593,7 +545,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives">
+                <a href="/archives%7C%7C%20fa%20fa-archive">
               
                   <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
@@ -607,10 +559,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -649,7 +601,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">yiwei</span>
 
   
 </div>
@@ -683,6 +635,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
